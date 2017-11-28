@@ -11,23 +11,26 @@
       #rowTop {
         position : absolute;
         top: 0px;
-        background-color: rgba(0,0,255,.5);
+        left: 0px;
         width: 900px;
         height: 300px;
+        background-color: rgba(0,0,255,.5);
       }
       #rowMid {
         position : absolute;
         top: 300px;
-        background-color: rgba(0,255,0,.5);
+        left: 0px;
         width: 900px;
         height: 300px;
+        background-color: rgba(0,255,0,.5);
       }
       #rowBot {
         position : absolute;
         top: 600px;
-        background-color: rgba(255,0,0,.5);
+        left: 0px;
         width: 900px;
         height: 300px;
+        background-color: rgba(255,0,0,.5);
       }
       #coreCircle {
         position: absolute;
@@ -35,10 +38,84 @@
         left: 0px;
         width: 900px;
         height: 900px;
+        background-color: rgba(0,0,0,1);
       }
     </style>
+    <script>
+      var svg, gRow1, gRow2, gRow3, gRowCover, gRowCircle, mask;
+      document.addEventListener("DOMContentLoaded",function() {
+        addLayers();
+      });
+
+      function addLayers() {
+        svg = d3.select("body").append("svg")
+          .attr("width",900)
+          .attr("height",900);
+        
+        mask = svg
+          .append("defs")
+          .append("mask")
+          .attr("id","myMask");
+
+        gRow1 = svg.append("g")
+          .attr("width",900)
+          .attr("height",300)
+          .attr("fill","rgba(0,0,255,1)")
+          .append("rect")
+            .attr("x",150)
+            .attr("y",150)
+            .attr("width",600)
+            .attr("height",200);
+
+        gRow2 = svg.append("g")
+          .attr("width",900)
+          .attr("height",300)
+          .attr("fill","rgba(0,255,0,1)")
+          .append("rect")
+            .attr("x",150)
+            .attr("y",350)
+            .attr("width",600)
+            .attr("height",200);
+
+        gRow3 = svg.append("g")
+          .attr("width",900)
+          .attr("height",300)
+          .attr("fill","rgba(255,0,0,1)")
+          .append("rect")
+            .attr("x",150)
+            .attr("y",550)
+            .attr("width",600)
+            .attr("height",200);
+
+        mask.append("rect")
+            .attr("x",0)
+            .attr("y",0)
+            .attr("width",900)
+            .attr("height",900)
+            .style("fill","white")
+            .style("opacity", 1);
+
+        mask.append("circle")
+            .attr("cx",450)
+            .attr("cy",450)
+            .attr("r",300);
+//            .attr("fill","transparent");
+
+        var rect = svg
+          .append("rect")
+          .attr("x", 0)
+          .attr("y", 0)
+          .attr("width", 900)
+          .attr("height", 900)
+          .attr("mask", "url(#myMask)")
+          .style("fill","rgb(28,28,155");
+      }
+    </script>
   </head>
   <body>
+
+
+    <!--
     <svg id="rowTop"></svg>
     <svg id="rowMid"></svg>
     <svg id="rowBot"></svg>
@@ -53,7 +130,6 @@
 
     </svg>
 
-    <!--
     <div id=rowTop><svg width=900 height=300></svg></div>
     <div id=rowMid><svg width=900 height=300></svg></div>
     <div id=rowBot><svg width=900 height=300></svg></div>
