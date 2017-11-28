@@ -29,12 +29,30 @@
         width: 900px;
         height: 300px;
       }
+      #coreCircle {
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        width: 900px;
+        height: 900px;
+      }
     </style>
   </head>
   <body>
     <svg id="rowTop"></svg>
     <svg id="rowMid"></svg>
     <svg id="rowBot"></svg>
+
+    <svg id="coreCircle" viewbox="0 0 900 900">
+      <defs>
+        <mask id="coreMask" x="0" y="0" width="900" height="900">
+          <rect x="0" y="0" width="900" height="900" fill="rgba(255,255,255,.8)" />
+          <circle cx="450" cy="450" r="400" />
+        </mask>
+      </defs>
+
+    </svg>
+
     <!--
     <div id=rowTop><svg width=900 height=300></svg></div>
     <div id=rowMid><svg width=900 height=300></svg></div>
